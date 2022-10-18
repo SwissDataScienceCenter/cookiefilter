@@ -1,0 +1,24 @@
+version: '3.9'
+
+services:
+  whoami:
+    image: traefik/whoami
+    command:
+      - --port=8000
+      - -verbose
+    ports:
+      - 8000:8000
+  proxy:
+    image: traefik
+    command:
+      - "--providers.file.directory=/config"
+      - "--experimental.localPlugins.cookiefilter.moduleName=github.com/SwissDataScienceCenter/cookiefilter"
+      - "--entrypoints.web=true"
+      - "--entryPoints.web.address=:8001"
+      - "--log=true"
+      - "--log.level=DEBUG"
+    volumes:
+      - ./test-traefik-config.yaml:/config/config.yaml:ro
+      - ../:/plugins-local/src/github.com/SwissDataScienceCenter/cookiefilter:ro
+    ports:
+      - 8001:8001

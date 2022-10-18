@@ -1,0 +1,23 @@
+http:
+  routers:
+    my-router:
+      rule: host(`localhost`)
+      service: service-foo
+      entryPoints:
+        - web
+      middlewares:
+        - cookiefilter
+
+  services:
+   service-foo:
+      loadBalancer:
+        servers:
+          - url: http://whoami:8000
+  
+  middlewares:
+    cookiefilter:
+      plugin:
+        cookiefilter:
+          keepCookies:
+            - cookieName1
+            - cookieName2
