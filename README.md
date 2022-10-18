@@ -59,7 +59,7 @@ http:
   middlewares:
     cookiefilter:
       plugin:
-        cookieFilterPlugin:
+        cookiefilter:
           keepCookies:
             - cookieName1
             - cookieName2
