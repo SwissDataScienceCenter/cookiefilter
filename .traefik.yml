@@ -1,0 +1,8 @@
+displayName: Cookie filter
+type: middleware
+import: github.com/SwissDataScienceCenter/cookiefilter
+summary: |
+  Keep only a set of specific cookies in a request and remove all others.
+  If no cookie names are passed then all cookies from the request are removed.
+testData:
+  keepCookies: []
